@@ -1,9 +1,11 @@
-import Vue from 'vue'
-import App from './App.vue'
-import './registerServiceWorker'
+import Vue from 'vue';
+import App from './App.vue';
+import './registerServiceWorker';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+import 'bulma';
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+    render: h => h(App),
+}).$mount('#app');
