@@ -1,14 +1,19 @@
 <template>
   <div>
-    <div class="is-flex is-flex-direction-row is-align-items-center is-justify-content-space-evenly">
-      <div class="is-flex is-flex-direction-row is-align-items-center is-justify-content-start gap-1">
-        <label for="loadfile">Search course</label>
-        <div class="control">
-          <input class="input" v-model="search_text" @keyup.enter="searchCourse"/>
+    <div class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-evenly">
+      <div class="is-flex is-flex-direction-column is-align-items-start is-justify-content-start">
+        <label for="loadfile" class="tag">Search course</label>
+        <div class="field has-addons">
+          <div class="control">
+            <input class="input" autofocus v-model="search_text" @keyup.enter="searchCourse"/>
+          </div>
+          <div class="control">
+            <button class="button" title="search course by name" @click="searchCourse" :disabled="search_text.length<3">🔍</button>
+            <button class="button" title="Upload ecar file" @click="$refs.load_file.click()">⤴️</button>
+            <input class="input" type="file" ref="load_file" accept="application/json" id="loadfile" style="display: none"
+                   @change="handleFileChange"/>
+          </div>
         </div>
-        <button class="button" @click="searchCourse" :disabled="search_text.length<3">Search</button>
-        <button class="button is-small" @click="$refs.load_file.click()">Upload file</button>
-        <input class="input" type="file" ref="load_file" accept="application/json" id="loadfile" style="display: none" @change="handleFileChange"/>
       </div>
     </div>
     <div id="app" class="is-flex is-flex-direction-column gap-1">
@@ -162,7 +167,7 @@ export default {
     },
     select_keys: function () {
       let keys = Object.keys(this.file_data).filter(this.filter_keys);
-      keys.every(key=>{
+      keys.every(key => {
         !this.select_key(key);
       })
     },
@@ -177,7 +182,7 @@ export default {
         this.question_data = parsed_data;
         return true;
       } catch (e) {
-          this.question_data = undefined;
+        this.question_data = undefined;
         return false;
       }
 
