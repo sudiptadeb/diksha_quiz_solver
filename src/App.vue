@@ -1,16 +1,21 @@
 <template>
   <div>
-    <div class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-evenly">
+    <div class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-evenly p-4">
       <div class="is-flex is-flex-direction-column is-align-items-start is-justify-content-start">
         <label for="loadfile" class="tag">Search course</label>
         <div class="field has-addons">
           <div class="control">
-            <input class="input" autofocus v-model="search_text" @keyup.enter="searchCourse"/>
+            <input class="input" autofocus v-model="search_text" @keyup.enter="searchCourse"
+                   style="width: calc(100vw - 9em);"/>
           </div>
           <div class="control">
-            <button class="button" title="search course by name" @click="searchCourse" :disabled="search_text.length<3">🔍</button>
+            <button class="button" title="search course by name" @click="searchCourse" :disabled="search_text.length<3">
+              🔍
+            </button>
+            <span>&nbsp;&nbsp;</span>
             <button class="button" title="Upload ecar file" @click="$refs.load_file.click()">⤴️</button>
-            <input class="input" type="file" ref="load_file" accept="application/json" id="loadfile" style="display: none"
+            <input class="input" type="file" ref="load_file" accept="application/json" id="loadfile"
+                   style="display: none"
                    @change="handleFileChange"/>
           </div>
         </div>
